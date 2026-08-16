@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f5f5">
+<meta name="description" content="LomoType 电脑端使用帮助 - 运行与托盘、设置窗口、快捷键、输入方式、配对码、输入后缀、蓝牙与局域网传输。">
+<title>电脑端使用 - LomoType 帮助</title>
+<script>
+(function(){
+  var t = 'system';
+  var stored = null;
+  try { stored = localStorage.getItem('lomotype-help-theme'); } catch(e) {}
+  if (stored && ['system','light','dark'].indexOf(stored) !== -1) {
+    t = stored;
+  } else {
+    try { t = (window.LomoType && window.LomoType.getTheme()) || 'system'; } catch(e) {}
+  }
+  if (['system','light','dark'].indexOf(t) === -1) t = 'system';
+  var resolved = t === 'system'
+    ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : t;
+  document.documentElement.setAttribute('data-theme', resolved);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', resolved === 'dark' ? '#111111' : '#f5f5f5');
+})();
+</script>
+<link rel="stylesheet" href="/assets/help/help.css?v=1786686497">
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "73f5aa603a5c43739ab46177013bdab9"}'></script></head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><path d="M10.85 12.65h2.3L12 9l-1.15 3.65zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM14.3 16l-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9z"/></symbol>
+  <symbol id="i-light" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></symbol>
+  <symbol id="i-dark" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.64-.11 2.41-.32-3.53-1.51-6.09-5.09-6.09-8.68 0-3.59 2.56-7.17 6.09-8.68C13.64 3.11 12.83 3 12 3z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 24 24"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol>
+  <symbol id="i-bt" viewBox="0 0 24 24"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><path d="M22 18v-6h-4v-2h-4v-2H9c-1.2 0-2.3.37-3.21 1L2 9.79V6H0v12h2v-3.79l4.07 3.41c.51.38 1.13.58 1.79.58h8v-2h4v-3h4zM7.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5S9 11.17 9 12s-.67 1.5-1.5 1.5z"/></symbol>
+</svg>
+
+<main class="container">
+
+  <section class="card">
+    <h1>电脑端使用</h1>
+    <p>电脑端是常驻系统托盘的小程序：手机连接后，把收到的文字送到电脑当前窗口。</p>
+  </section>
+
+  <section class="card article-section" id="run">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-devices"/></svg>运行程序</h2>
+    <p>双击 <code>LomoType.exe</code> 启动，程序最小化到系统托盘（右下角图标区），不弹主窗口。右键托盘图标打开菜单：状态（查看/断开连接）、设置、退出。</p>
+    <div class="callout info">
+      <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+      <p>程序单实例运行。在设置窗口勾选「开机启动」后随 Windows 自动运行。</p>
+    </div>
+  </section>
+
+  <section class="card article-section" id="settings">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>设置窗口</h2>
+    <p>从托盘菜单「设置」打开（单击托盘图标也可）。左侧为分类页签，<strong>所有修改即时生效、自动保存</strong>，无需点确定。</p>
+    <div class="rows">
+      <div class="row">
+        <div><strong>常规</strong><p>输入方式、开机启动、自动调暗手机屏幕</p></div>
+      </div>
+      <div class="row">
+        <div><strong>快捷键</strong><p>录制电脑热键（默认 <kbd>Ctrl</kbd> + <kbd>Win</kbd>）</p></div>
+      </div>
+      <div class="row">
+        <div><strong>后缀</strong><p>每条文字送达后自动按下的按键与延迟</p></div>
+      </div>
+      <div class="row">
+        <div><strong>配对</strong><p>配对码开关、已配对手机管理</p></div>
+      </div>
+      <div class="row">
+        <div><strong>手机APP</strong><p>手机端下载二维码</p></div>
+      </div>
+      <div class="row">
+        <div><strong>关于</strong><p>版本号、检查更新；连续三次点击图标可开启隐藏的「开发模式」查看日志与端口</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card article-section" id="backend">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>输入方式</h2>
+    <p>决定文字以何种方式进入电脑当前窗口（设置 -> 常规 -> 输入方式）：</p>
+    <ul>
+      <li><strong>模拟按键</strong>（默认）-- 模拟键盘输入，绕过电脑输入法。绝大多数场景用此方式。</li>
+      <li><strong>剪贴板粘贴</strong> -- 写入剪贴板并按 <kbd>Ctrl</kbd> + <kbd>V</kbd>。部分应用拦截模拟按键（游戏、远程桌面）时改用此方式。</li>
+    </ul>
+  </section>
+
+  <section class="card article-section" id="hotkey">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>快捷键 <kbd>Ctrl</kbd> + <kbd>Win</kbd></h2>
+    <p>快捷键用于在电脑上遥控手机：</p>
+    <ul>
+      <li><strong>按住</strong> 向手机发送触摸按下，屏幕底部出现胶囊窗口实时同步手机输入内容</li>
+      <li><strong>松开</strong> 发送触摸抬起</li>
+      <li><strong>语音模式下</strong>：按住开始录音，松开发送识别文字 -- 无需碰手机即可语音输入</li>
+    </ul>
+    <p>默认 <kbd>Ctrl</kbd> + <kbd>Win</kbd>。设置 -> 快捷键 点击输入框后直接按下想用的组合即可录制（至少包含一个修饰键；也可单独使用鼠标侧键 X1 / X2）。</p>
+    <div class="callout info">
+      <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+      <p>键盘模式下，电脑热键需配合手机端无障碍服务与「截图设置坐标」才能触发录音，详见<a href="/app/help/voice#coords">语音输入 · 截图设置坐标</a>。</p>
+    </div>
+  </section>
+
+  <section class="card article-section" id="suffix">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-auto"/></svg>输入后缀</h2>
+    <p>每条文字送达后可让电脑自动补按一个按键，模拟扫描枪式输入（如仓库、收银场景）。设置位置：设置窗口 -> 后缀。</p>
+    <ul>
+      <li>不使用后缀（默认）</li>
+      <li>回车 <kbd>Enter</kbd> / 发送 <kbd>Ctrl</kbd>+<kbd>Enter</kbd> / 制表符 <kbd>Tab</kbd> / 软回车 <kbd>Shift</kbd>+<kbd>Enter</kbd></li>
+      <li>方向键 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>-></kbd></li>
+    </ul>
+    <p>可设置按键前的延迟（毫秒）。</p>
+  </section>
+
+  <section class="card article-section" id="pairing">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>配对码</h2>
+    <p>首次连接时电脑屏幕弹出 <strong>4 位数字配对码</strong>，在手机输入即可。配对成功后该手机被记住，以后连接无需再输。</p>
+    <p>可在设置 -> 配对 关闭配对码验证，或管理（移除 / 全部清除）已配对手机。</p>
+  </section>
+
+  <section class="card article-section" id="dim">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-light"/></svg>自动调暗手机屏幕</h2>
+    <p>勾选后连接时把手机屏幕亮度调到最低，让手机放在桌上不发光干扰：</p>
+    <ul>
+      <li>勾选时已有手机连接，立即生效</li>
+      <li>未连接时在下一次连接的首条文字上屏后生效</li>
+      <li>取消勾选或断开连接后恢复系统亮度</li>
+    </ul>
+  </section>
+
+  <section class="card article-section" id="transport">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg>传输方式（局域网 / 蓝牙）</h2>
+    <p>电脑端同时运行两种传输方式：</p>
+    <div class="rows">
+      <div class="row">
+        <div><strong>局域网</strong><p>手机与电脑需在同一 Wi-Fi 或路由器下。</p></div>
+      </div>
+      <div class="row">
+        <div><strong>蓝牙</strong><p>无需局域网，需先在手机和电脑的系统设置中完成蓝牙配对。</p></div>
+      </div>
+    </div>
+    <p>设置窗口左下角的状态指示显示运行状态，绿色勾标记当前连接所用方式；点击查看详情（设备名、传输类型、连接时长等）并断开。蓝牙步骤见<a href="/app/help/faq#bluetooth">常见问题 · 蓝牙连接</a>。</p>
+  </section>
+
+  <section class="card article-section" id="photo">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>发送图片</h2>
+    <p>手机在「文件」页选择图片后：</p>
+    <ul>
+      <li><strong>屏幕底部胶囊</strong> -- 显示图片缩略图与文件名、尺寸等信息</li>
+      <li><strong>发送</strong> -- 手机点发送后，图片经局域网传到电脑，通过剪贴板粘贴到当前窗口（与「输入方式」设置无关，始终使用粘贴）</li>
+    </ul>
+    <div class="callout warn">
+      <svg class="icon" aria-hidden="true"><use href="#i-warn"/></svg>
+      <p>图片传输仅支持局域网，蓝牙连接时不可用。</p>
+    </div>
+  </section>
+
+  <section class="card article-section" id="admin">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>Windows 管理员权限</h2>
+    <p>普通窗口中所有功能正常使用。若需在管理员权限窗口（任务管理器、管理员终端）中上屏，运行 <code>LomoType-Setup-&lt;版本号&gt;.exe</code> 安装包即可。服务只在向管理员窗口输入时才发挥作用，不安装也不影响日常使用。</p>
+  </section>
+
+</main>
+
+<button class="theme-toggle hide" type="button" aria-label="切换主题">
+  <svg class="icon" aria-hidden="true"><use href="#i-light"/></svg>
+</button>
+
+<script src="/assets/help/help.js?v=1786686497"></script>
+</body>
+</html>

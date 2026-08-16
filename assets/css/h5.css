@@ -1,0 +1,247 @@
+/* LomoType H5 Mobile Landing Page
+   Mobile-first; redeclares LomoColor design tokens (see style.css).
+   Uses rem units (1rem = 16px browser default) for scalable typography
+   and spacing. Borders and box-shadow offsets stay in px. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --surface-variant: #eeeeee;
+  --on-surface: #1a1a1a;
+  --on-surface-variant: #6a6a6e;
+  --primary: #1783ff;
+  --on-primary: #ffffff;
+  --primary-container: #e8f1fc;
+  --outline: #c6c6ce;
+  --outline-variant: #e0e0e0;
+  --divider: #ececec;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.14);
+  --radius-card: 0.75rem;
+  --radius-pill: 999px;
+  --max-width: 75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111111;
+    --surface: #1f1f1f;
+    --surface-variant: #262626;
+    --on-surface: #dbdbdb;
+    --on-surface-variant: #8a8a8e;
+    --primary: #1a89ff;
+    --on-primary: #ffffff;
+    --primary-container: #123258;
+    --outline: #5e5e66;
+    --outline-variant: #333333;
+    --divider: #2a2a2a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.55);
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--on-surface);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Header ---------- */
+.h5-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--outline-variant);
+  padding: 1rem;
+}
+
+.h5-header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.h5-header .logo img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.875rem;
+}
+
+/* ---------- Hero ---------- */
+.h5-hero {
+  padding: 2rem 1.25rem 0.5rem;
+}
+
+.h5-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--on-surface);
+  letter-spacing: -0.03125rem;
+  line-height: 1.25;
+}
+
+.h5-features {
+  list-style: none;
+  margin-bottom: 1.75rem;
+}
+
+.h5-features li {
+  font-size: 1.0625rem;
+  color: var(--on-surface-variant);
+  margin-bottom: 0.625rem;
+  line-height: 1.6;
+}
+
+/* ---------- Download button ---------- */
+.h5-download {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.875rem 1.5rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-pill);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s, filter 0.2s;
+}
+
+.h5-download:active {
+  filter: brightness(0.93);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---------- Screenshots ---------- */
+.h5-screenshots {
+  padding: 1.75rem 1.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.screenshot {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.screenshot-pc {
+  width: 100%;
+  aspect-ratio: 662 / 440;
+  border-radius: 0;
+}
+
+.screenshot-phone {
+  width: 60%;
+  max-width: 16.25rem;
+  aspect-ratio: 720 / 1380;
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.875rem;
+}
+
+/* ---------- FAQ ---------- */
+.h5-faq {
+  padding: 2rem 1rem 2.5rem;
+}
+
+.h5-faq-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03125rem;
+}
+
+.faq-item {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--on-surface);
+  line-height: 1.5;
+  list-style: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  margin-left: auto;
+  flex: none;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--on-surface-variant);
+  transition: transform 0.15s ease;
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item summary:active { background: var(--surface-variant); }
+
+.faq-body {
+  padding: 0 1rem 0.875rem;
+  border-top: 1px solid var(--divider);
+  padding-top: 0.625rem;
+  margin-top: 0.125rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--on-surface-variant);
+}
+
+.faq-body p { margin: 0.25rem 0; }
+.faq-body ul { margin: 0.25rem 0; padding-left: 1.25rem; }
+.faq-body li { margin: 0.1875rem 0; }
+.faq-body strong { color: var(--on-surface); font-weight: 600; }
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  color: var(--on-surface-variant);
+  font-size: 0.8125rem;
+  padding: 2.5rem 1rem 2rem;
+  line-height: 1.8;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .h5-download { transition: none; }
+  .faq-item summary::after { transition: none; }
+}

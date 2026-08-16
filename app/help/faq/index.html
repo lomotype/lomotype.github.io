@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f5f5">
+<meta name="description" content="LomoType 常见问题 - 找不到电脑、蓝牙连接、连接断开、配对码错误、快捷键没反应、文字不上屏、语音识别失败等排查。">
+<title>常见问题 - LomoType 帮助</title>
+<script>
+(function(){
+  var t = 'system';
+  var stored = null;
+  try { stored = localStorage.getItem('lomotype-help-theme'); } catch(e) {}
+  if (stored && ['system','light','dark'].indexOf(stored) !== -1) {
+    t = stored;
+  } else {
+    try { t = (window.LomoType && window.LomoType.getTheme()) || 'system'; } catch(e) {}
+  }
+  if (['system','light','dark'].indexOf(t) === -1) t = 'system';
+  var resolved = t === 'system'
+    ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : t;
+  document.documentElement.setAttribute('data-theme', resolved);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', resolved === 'dark' ? '#111111' : '#f5f5f5');
+})();
+</script>
+<link rel="stylesheet" href="/assets/help/help.css?v=1786686497">
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "73f5aa603a5c43739ab46177013bdab9"}'></script></head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><path d="M10.85 12.65h2.3L12 9l-1.15 3.65zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM14.3 16l-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9z"/></symbol>
+  <symbol id="i-light" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></symbol>
+  <symbol id="i-dark" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.64-.11 2.41-.32-3.53-1.51-6.09-5.09-6.09-8.68 0-3.59 2.56-7.17 6.09-8.68C13.64 3.11 12.83 3 12 3z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 24 24"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol>
+  <symbol id="i-bt" viewBox="0 0 24 24"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><path d="M22 18v-6h-4v-2h-4v-2H9c-1.2 0-2.3.37-3.21 1L2 9.79V6H0v12h2v-3.79l4.07 3.41c.51.38 1.13.58 1.79.58h8v-2h4v-3h4zM7.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5S9 11.17 9 12s-.67 1.5-1.5 1.5z"/></symbol>
+</svg>
+
+<main class="container">
+
+  <section class="card">
+    <h1>常见问题</h1>
+    <p>常见问题快速排查。</p>
+  </section>
+
+  <section class="card article-section" id="g-connect">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg>连接与发现</h2>
+
+    <details class="faq-item">
+      <summary>列表里找不到电脑？</summary>
+      <div class="faq-body">
+        <p>确认手机与电脑在同一 Wi-Fi、电脑端托盘程序正在运行、Windows 防火墙未拦截。<a href="/app/help/topic/H0001">详见完整排查</a>。</p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="bluetooth">
+      <summary>想用蓝牙连接需要先做什么？</summary>
+      <div class="faq-body">
+        <p>电脑与手机系统蓝牙设置中完成配对，确认托盘程序运行、蓝牙已开启，手机端设置中开启蓝牙发现。<a href="/app/help/topic/H0001#bluetooth">详见步骤</a>。</p>
+        <div class="callout info">
+          <svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg>
+          <p>蓝牙不依赖局域网，不在同一 Wi-Fi 时也可使用。</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>连接经常断开？</summary>
+      <div class="faq-body">
+        <ul>
+          <li>手机切后台会自动断开，回前台后自动重连</li>
+          <li>网络波动时每秒自动重试</li>
+          <li>同一手机经局域网和蓝牙同时连同一电脑时，新传输自动接管旧的</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>配对码总是错误？</summary>
+      <div class="faq-body">
+        <p>以电脑屏幕当前显示的 4 位为准；超过 30 秒未输入自动取消，重新连接即可。</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="card article-section" id="g-hotkey">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>快捷键与录音</h2>
+
+    <details class="faq-item">
+      <summary><kbd>Ctrl</kbd> + <kbd>Win</kbd> 没反应？</summary>
+      <div class="faq-body">
+        <ul>
+          <li><strong>语音模式</strong>：确认处于语音模式且已启用识别配置</li>
+          <li><strong>键盘模式</strong>：确认无障碍服务已开启、已完成<a href="/app/help/voice#coords">截图设置坐标</a></li>
+          <li>确认组合键未被其他程序占用</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary><kbd>Ctrl</kbd> + <kbd>Win</kbd> 录音位置不对？</summary>
+      <div class="faq-body">
+        <p>重新<a href="/app/help/voice#coords">截图设置坐标</a>标记空格键位置；确认当前输入法为支持的输入法（豆包、微信、搜狗、百度、讯飞、QQ 拼音按住录音；Typeless、Gboard 点击录音）。</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="card article-section" id="g-input">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-auto"/></svg>文字上屏</h2>
+
+    <details class="faq-item">
+      <summary>输入的文本没有上屏？</summary>
+      <div class="faq-body">
+        <p>部分应用拦截模拟按键（游戏、远程桌面）。在设置 -> 常规 -> 输入方式 切换为「剪贴板粘贴」。</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="card article-section" id="g-voice">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg>语音输入</h2>
+
+    <details class="faq-item">
+      <summary>语音输入不工作？</summary>
+      <div class="faq-body">
+        <ul>
+          <li>确认已启用识别配置（设置 -> 语音识别）</li>
+          <li>确认已授予麦克风权限</li>
+          <li>语音识别依赖云端服务，需保持网络连接</li>
+          <li>部分服务需特定 endpoint / 模型配置，参考<a href="/app/help/voice#config">语音识别配置</a></li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section class="card article-section" id="g-other">
+    <h2><svg class="icon" aria-hidden="true"><use href="#i-help"/></svg>其它问题</h2>
+
+    <details class="faq-item">
+      <summary>一台手机可以连接多台电脑吗？</summary>
+      <div class="faq-body">
+        <p>可以。手机同时列出多台电脑，可分别保持连接。同一台电脑同一时间只能被一台手机占用，新连接会抢占旧连接。连接多台电脑时，列表第一台为「活跃电脑」，所有文字、图片、语音发送给它，可拖动排序调整。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>手机能发图片到电脑吗？</summary>
+      <div class="faq-body">
+        <p>可以。手机「文件」页选择图片后发送，图片经局域网直接传到电脑并粘贴到当前窗口（图片传输仅支持局域网，不支持蓝牙）。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>输入的文字会经过哪里？安全吗？</summary>
+      <div class="faq-body">
+        <p>文字经局域网或蓝牙直接从手机送到电脑，不经过第三方服务器。唯一例外是语音输入 -- 音频会上传至你选择的云端识别服务。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>支持哪些系统版本？</summary>
+      <div class="faq-body">
+        <ul>
+          <li>手机端：Android 7.0（API 24）及以上</li>
+          <li>电脑端：Windows 7 SP1 及以上（建议 Windows 10 / 11）</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<button class="theme-toggle hide" type="button" aria-label="切换主题">
+  <svg class="icon" aria-hidden="true"><use href="#i-light"/></svg>
+</button>
+
+<script src="/assets/help/help.js?v=1786686497"></script>
+</body>
+</html>

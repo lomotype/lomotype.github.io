@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f5f5">
+<meta name="description" content="LomoType 帮助中心 - 在手机上打字，文字直接出现在电脑上。涵盖电脑端、手机端、语音输入与常见问题。">
+<title>LomoType 帮助中心</title>
+<script>
+(function(){
+  var t = 'system';
+  var stored = null;
+  try { stored = localStorage.getItem('lomotype-help-theme'); } catch(e) {}
+  if (stored && ['system','light','dark'].indexOf(stored) !== -1) {
+    t = stored;
+  } else {
+    try { t = (window.LomoType && window.LomoType.getTheme()) || 'system'; } catch(e) {}
+  }
+  if (['system','light','dark'].indexOf(t) === -1) t = 'system';
+  var resolved = t === 'system'
+    ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : t;
+  document.documentElement.setAttribute('data-theme', resolved);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', resolved === 'dark' ? '#111111' : '#f5f5f5');
+})();
+</script>
+<link rel="stylesheet" href="/assets/help/help.css?v=1786686497">
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "73f5aa603a5c43739ab46177013bdab9"}'></script></head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><path d="M10.85 12.65h2.3L12 9l-1.15 3.65zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM14.3 16l-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9z"/></symbol>
+  <symbol id="i-light" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></symbol>
+  <symbol id="i-dark" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.64-.11 2.41-.32-3.53-1.51-6.09-5.09-6.09-8.68 0-3.59 2.56-7.17 6.09-8.68C13.64 3.11 12.83 3 12 3z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 24 24"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol>
+  <symbol id="i-bt" viewBox="0 0 24 24"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><path d="M22 18v-6h-4v-2h-4v-2H9c-1.2 0-2.3.37-3.21 1L2 9.79V6H0v12h2v-3.79l4.07 3.41c.51.38 1.13.58 1.79.58h8v-2h4v-3h4zM7.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5S9 11.17 9 12s-.67 1.5-1.5 1.5z"/></symbol>
+</svg>
+
+<main class="container">
+
+  <section class="card" id="quick-start">
+    <h2>快速开始</h2>
+    <ol class="steps">
+      <li><p><strong>启动电脑端</strong> -- 双击 <code>LomoType.exe</code>，程序收进系统托盘，无需打开主窗口。</p></li>
+      <li><p><strong>安装手机端</strong> -- 电脑设置「手机APP」页扫码下载，或访问 <a href="https://lomotype.com/lomotype_latest.apk">lomotype.com/lomotype_latest.apk</a>。</p></li>
+      <li><p><strong>连接</strong> -- 手机与电脑连同一 Wi-Fi，打开 App 点击列表中的电脑；也可先用蓝牙配对再连接。</p></li>
+      <li><p><strong>输入配对码</strong> -- 首次连接按电脑屏幕提示输入 4 位配对码（若该电脑开启了配对验证）。</p></li>
+      <li><p><strong>打字上屏</strong> -- 在输入框打字并发送，文字立即出现在电脑当前窗口。</p></li>
+    </ol>
+  </section>
+
+  <h2 class="section-header">帮助分类</h2>
+
+  <nav class="topic-list" aria-label="帮助分类">
+    <a class="topic" href="/app/help/pc"
+       data-keywords="电脑 pc 托盘 系统托盘 设置窗口 快捷键 热键 后缀 输入方式 上屏 剪贴板 配对码 调暗 蓝牙 局域网 管理员 日志 开发模式 图片 照片 粘贴图片 胶囊">
+      <span class="topic-icon"><svg class="icon" aria-hidden="true"><use href="#i-devices"/></svg></span>
+      <span class="topic-body">
+        <span class="topic-title">电脑端使用</span>
+        <span class="topic-desc">运行与托盘、设置窗口、快捷键、输入方式、配对码、输入后缀</span>
+      </span>
+      <svg class="icon chev" aria-hidden="true"><use href="#i-chev"/></svg>
+    </a>
+
+    <a class="topic" href="/app/help/android"
+       data-keywords="手机 android app 安装 下载 连接 发现 自动连接 键盘输入 历史 记录 无障碍 权限 抢占 更新 主题 语言 文件 图片 照片 相册 预览 多台电脑 活跃电脑 拖动排序">
+      <span class="topic-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+      <span class="topic-body">
+        <span class="topic-title">手机端使用</span>
+        <span class="topic-desc">安装下载、发现与连接、键盘输入、历史记录、文件与图片、无障碍服务、应用更新</span>
+      </span>
+      <svg class="icon chev" aria-hidden="true"><use href="#i-chev"/></svg>
+    </a>
+
+    <a class="topic" href="/app/help/voice"
+       data-keywords="语音 输入 识别 配置 asr 供应商 豆包 阿里云 智谱 whisper 录音 收音增强 麦克风 坐标 截图 输入法 快捷语音 文字处理">
+      <span class="topic-icon"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+      <span class="topic-body">
+        <span class="topic-title">语音输入</span>
+        <span class="topic-desc">语音模式、识别服务配置、文字处理、收音增强、截图设置坐标</span>
+      </span>
+      <svg class="icon chev" aria-hidden="true"><use href="#i-chev"/></svg>
+    </a>
+
+    <a class="topic" href="/app/help/faq"
+       data-keywords="常见问题 faq 排查 找不到电脑 防火墙 蓝牙 断开 配对码 没反应 上屏 识别失败 麦克风 多台电脑 隐私 系统版本 图片 照片 活跃电脑">
+      <span class="topic-icon"><svg class="icon" aria-hidden="true"><use href="#i-help"/></svg></span>
+      <span class="topic-body">
+        <span class="topic-title">常见问题</span>
+        <span class="topic-desc">连接、热键、上屏、语音问题排查与其它常见疑问</span>
+      </span>
+      <svg class="icon chev" aria-hidden="true"><use href="#i-chev"/></svg>
+    </a>
+  </nav>
+
+</main>
+
+<button class="theme-toggle hide" type="button" aria-label="切换主题">
+  <svg class="icon" aria-hidden="true"><use href="#i-light"/></svg>
+</button>
+
+<script src="/assets/help/help.js?v=1786686497"></script>
+</body>
+</html>
